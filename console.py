@@ -121,9 +121,24 @@ class HBNBCommand(cmd.Cmd):
         elif args not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
+        class_name, params = args.split(' ', 1)
+        if class_name in HBNBCommand.classes:
+            my_dict = dict()
+            for param in params.split(' '):
+                if '=' in param:
+                    key, value = param.split('=')
+                    if value.isdigit():
+                        my_dict[key] = int(value)
+                    elif value.isdigit() and '.' in value:
+                        my_dict[key] = float(value)
+                    else:
+                        value = value.replace('_', ' ')
+                        value = value[1:-1].replace("\\\"", "\"")
+                        my_dict[key] = value
         new_instance = HBNBCommand.classes[args]()
+        obj = new_instance(**my_dict)
         storage.save()
-        print(new_instance.id)
+        print(obj.id)
         storage.save()
 
     def help_create(self):
