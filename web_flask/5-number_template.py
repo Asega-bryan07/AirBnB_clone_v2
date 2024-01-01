@@ -29,6 +29,7 @@ def cText(text):
     return "C {}".format(text.replace("_", " "))
 
 
+@app.route('/python', defaults={'text', 'is_cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def pythonText(text="is cool"):
     '''returns python followed by the text of the variable'''
@@ -50,4 +51,4 @@ def number_template(n=None):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
