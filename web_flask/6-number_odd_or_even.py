@@ -29,11 +29,12 @@ def cText(text):
     return "C {}".format(text.replace("_", " "))
 
 
-@app.route('/python', strict_slashes=False)
+@app.route('/python', defaults={'text', 'is_cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def pythonText(text="is cool"):
     '''returns python followed by the text of the variable'''
-    return "Python {}".format(text.replace("_", " "))
+    formatted_text = text.replace("_", " ")
+    return("Python {}").format(formatted_text)
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
@@ -58,10 +59,10 @@ def number_odd_or_even(n=None):
     '''
     if isinstance(n, int):
         if n % 2:
-            eo = "odd"
+            e_o = "odd"
         else:
-            eo = "even"
-        return render_template("6-number_odd_or_even.html", n=n, eo=eo)
+            e_o = "even"
+        return render_template("6-number_odd_or_even.html", n=n, e_o=e_o)
 
 
 if __name__ == "__main__":
