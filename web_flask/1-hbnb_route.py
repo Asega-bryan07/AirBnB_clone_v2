@@ -11,16 +11,16 @@ app = Flask("__name__")
 
 
 @app.route('/', strict_slashes=False)
-def hello():
+def hello_hbnb():
     '''Returns a given string'''
     return "Hello HBNB!"
 
 
-@app.route("/hbnb", strict_slashes=False)
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
     '''Returns a given string '''
-    return "HBNB!"
+    return "HBNB"
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=None)
+    app.run(host="0.0.0.0", port=5000)
